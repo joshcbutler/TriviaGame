@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $("#game").hide();
+});
+
 var questions = [{
     "q": "Who played Count Dooku?",
     "c": ["Max Von Sydow", "Christopher Lee", "George Lucas", "Ian McDiarmid"],
@@ -39,3 +43,31 @@ var questions = [{
     "c": ["Red", "Green", "Purple", "Blue"],
     "answer": 3
 }];
+
+// on click of start button, hide instructions and start button, and show question page.
+$('#startbutton').on('click', function() {
+    $(this).hide();
+    $("#instructions").hide();
+    startGame();
+});
+// begins the game and starts the timer
+function startGame() {
+    $("#game").show();
+    seconds = 120;
+    $("#timer").html('Time Remaining: ' + seconds);
+    time = setInterval(showTimer, 1000);
+    $("#question").html(questions);
+}
+function showTimer(){
+    seconds--;
+    $('#timer').html('Time Remaining: ' + seconds);
+    if (seconds < 1){
+        clearInterval(time);
+        engame();
+    }
+}
+function endGame(){
+
+}
+
+
